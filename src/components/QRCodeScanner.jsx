@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { QrReader } from "react-qr-reader";
+// import { QrReader } from "react-qr-reader";
 
 const QRCodeScanner = (props) => {
   const [data, setData] = useState("No result");
@@ -34,12 +34,12 @@ const QRCodeScanner = (props) => {
       <button onClick={startScanning} disabled={stopCam}>
         Scan QR Pass
       </button>
-      {startCam && (
+      {/* {startCam && (
         <QrReader
           onResult={handleScan}
           style={{ maxHeight: "300px", maxWidth: "300px" }}
         />
-      )}
+      )} */}
 
       <p>{data}</p>
     </>
