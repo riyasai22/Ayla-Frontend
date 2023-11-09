@@ -13,7 +13,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/register" element={<RegistrationForm />} />
         <Route exact path="/invitation" element={<Invitation />} />
-        {/* <Route exact path="/verify" element={<QRCodeScanner />} /> */}
+        <Route exact path="/verify" element={<QRCodeScanner />} />
       </Routes>
     </div>
   );
