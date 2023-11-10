@@ -38,28 +38,33 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+    <div className="main-container">
+      <h1>Ayla Admin Login</h1>
+      <div className="login-container">
+        <h2>Login</h2>
+        <div className="input-group">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        {error && <p className="error-message">{error}</p>}
+        <button className="login-button" onClick={handleLogin}>
+          Login
+        </button>
       </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };
