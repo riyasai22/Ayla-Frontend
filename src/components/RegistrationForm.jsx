@@ -129,6 +129,7 @@ function RegistrationForm() {
               Name<span>*</span>
             </label>
             <input
+              className="normal-input"
               type="text"
               name="name"
               placeholder="Enter your name."
@@ -143,7 +144,8 @@ function RegistrationForm() {
                 Email<span>*</span>
               </label>
               <input
-                type="text"
+                className="normal-input"
+                type="email"
                 name="email"
                 placeholder="Enter your email."
                 value={parentInfo.email}
@@ -151,18 +153,25 @@ function RegistrationForm() {
                 required
               />
             </div>
+            <div className="field"></div>
             <div className="field">
               <label>
                 Contact<span>*</span>
               </label>
-              <input
-                type="text"
-                name="phone"
-                placeholder="Enter your phone number."
-                value={parentInfo.phone}
-                onChange={(e) => handleInputChange(e)}
-                required
-              />
+              <div className="contact">
+                <p className="span">+971</p>
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Enter your phone number."
+                  minLength={9}
+                  maxLength={10}
+                  value={parentInfo.phone}
+                  onChange={(e) => handleInputChange(e)}
+                  required
+                  className="input-field"
+                />
+              </div>
             </div>
           </div>
 

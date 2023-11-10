@@ -9,18 +9,29 @@ class QRCodeScanner extends Component {
       delay: 100,
       result: "No result",
       details: null,
+      scanning: true, // Add a flag to control scanning
     };
 
     this.handleScan = this.handleScan.bind(this);
   }
 
   handleScan(data) {
+    if (!this.state.scanning) {
+      // Stop scanning if the flag is false
+      return;
+    }
+
     this.setState({
       result: data,
     });
 
     if (data !== null && data !== "No result") {
       console.log(data);
+      // Stop scanning
+      this.setState({
+        scanning: false,
+      });
+
       // Make an Axios call to fetch user details
       axios
         .get(`http://localhost:5000/check?invite=${data.text}`)
@@ -28,9 +39,18 @@ class QRCodeScanner extends Component {
           this.setState({
             details: response.data,
           });
+          // Reset scanning and result for the next scan
+          this.setState({
+            scanning: true,
+            result: "No result",
+          });
         })
         .catch((error) => {
           console.error("Error fetching user details:", error);
+          // Reset scanning for the next scan even in case of an error
+          this.setState({
+            scanning: true,
+          });
         });
     }
   }

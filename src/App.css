@@ -124,7 +124,8 @@ h2 {
 }
 
 /* Style the registration button */
-.form_wrapper form button[type="submit"] {
+.form_wrapper form button[type="submit"],
+.export {
   background-color: #9a1515;
   color: #ffffff;
   padding: 10px 30px;
@@ -139,11 +140,22 @@ h2 {
 }
 
 /* Add hover effect to the button */
-.form_wrapper form button[type="submit"]:hover {
+.form_wrapper form button[type="submit"]:hover,
+.export {
   background-color: #c42020;
   font-weight: 500;
 }
 
+.export {
+  font-size: 14px;
+  margin-top: 0px;
+  padding: 7px 14px;
+  border-radius: 2px;
+  transition: 0.4s ease;
+}
+.export:hover {
+  background-color: #ef3838;
+}
 /* Style the "Register Child" button */
 .form_wrapper form button[type="button"] {
   padding: 5px 10px;
@@ -190,6 +202,20 @@ label span {
 }
 .side_by_side .field input {
   width: 100%; /* Set width to 100% to fill the container */
+}
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact .span {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 14px 5px;
+  background-color: #ef3838;
+  font-size: 14px;
+  color: white;
 }
 
 .Snow {
@@ -311,6 +337,55 @@ label span {
   align-items: center;
   min-height: 100vh;
 }
+.details-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+}
+/* Add this CSS in your styles or as a separate stylesheet */
+
+.christmas-table {
+  border-collapse: collapse;
+  min-width: 900px;
+  max-width: 900px;
+
+  margin-top: 20px;
+}
+
+.christmas-table th,
+.christmas-table td {
+  border: 1px solid #fff;
+  padding: 8px;
+  text-align: left;
+}
+
+.christmas-table th {
+  background-color: #dc3545; /* Christmas red */
+  color: #fff;
+}
+
+.christmas-table tbody tr:nth-child(even) {
+  background-color: #f8d7da; /* Light red */
+}
+
+.christmas-table tbody tr:nth-child(odd) {
+  background-color: #fff; /* White */
+}
+.filter-container {
+  margin-bottom: 15px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+select {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
 @media screen and (max-width: 768px) {
   .Snow {
@@ -362,7 +437,7 @@ label span {
   .side_by_side .field {
     flex: 1;
   }
-  .side_by_side .field input {
+  .side_by_side .field .normal-input {
     width: 90%; /* Set width to 100% to fill the container */
   }
 }
