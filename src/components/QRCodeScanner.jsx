@@ -34,7 +34,7 @@ class QRCodeScanner extends Component {
 
       // Make an Axios call to fetch user details
       axios
-        .get(`http://localhost:5000/check?invite=${data.text}`)
+        .get(`${process.env.REACT_APP_BACKEND_URI}/check?invite=${data.text}`)
         .then((response) => {
           this.setState({
             details: response.data,
