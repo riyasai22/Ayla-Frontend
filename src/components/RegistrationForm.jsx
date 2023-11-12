@@ -213,7 +213,7 @@ function RegistrationForm() {
                   Age<span>*</span>
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   name="age"
                   value={child.age}
                   max={15}

@@ -112,9 +112,10 @@ h2 {
   font-family: "Lato", sans-serif;
 }
 /* Set a shorter width for number type input fields */
-.form_wrapper form input[type="number"] {
-  width: 50px; /* Adjust the width as needed */
-}
+/* .form_wrapper form input[type="number"] {
+  width: 70px; /* Adjust the width as needed */
+/* padding: 0px;
+} */
 
 /* Style the labels */
 .form_wrapper form label {
@@ -217,6 +218,38 @@ label span {
   background-color: #ef3838;
   font-size: 14px;
   color: white;
+}
+.result-text {
+  margin-top: 10px;
+}
+
+.user-details {
+  font-family: "Poppins";
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.user-details h2 {
+  margin: 0px 0px 10px;
+  padding: 5px 0px;
+  border-bottom: 2px solid #ccc;
+}
+.parent-details {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.child-details {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #eeeeee;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.user-details h3 {
+  margin: 0px;
 }
 
 .Snow {
@@ -333,10 +366,17 @@ label span {
 }
 .verification {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+}
+.scanner {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgb(33, 33, 33);
+  padding: 20px;
+  max-height: 90vh;
 }
 .details-container {
   display: flex;
@@ -440,6 +480,12 @@ input {
 
 .login-button:hover {
   background-color: #9a1515;
+}
+
+.children-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 768px) {

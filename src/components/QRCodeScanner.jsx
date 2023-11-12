@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import QrReader from "react-qr-scanner";
 import axios from "axios";
 
@@ -9,7 +9,15 @@ class QRCodeScanner extends Component {
       delay: 100,
       result: "No result",
       details: null,
+      // details: {
+      //   name: "Riya Sailesh",
+      //   phone: "508297917",
+      //   email: "riyasailesh@gmail.com",
+      //   attended: "false",
+      //   children: [{ name: "Raj", age: 8, gender: "Female" }],
+      // },
       scanning: true, // Add a flag to control scanning
+      inviteCode: "",
     };
 
     this.handleScan = this.handleScan.bind(this);
@@ -58,37 +66,88 @@ class QRCodeScanner extends Component {
   handleError(err) {
     console.error(err);
   }
+  // Add handleChange function to update inviteCode state
+  handleChange = (e) => {
+    this.setState({
+      inviteCode: e.target.value,
+    });
+  };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND_URI}/check?invite=${this.state.inviteCode}`
+      )
+      .then((response) => {
+        this.setState({
+          details: response.data,
+        });
+        this.setState({
+          scanning: true,
+          result: "No result",
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching user details:", error);
+        this.setState({
+          scanning: true,
+        });
+      });
+  };
 
   render() {
     const previewStyle = {
-      height: 240,
-      width: 320,
+      height: 620,
+      width: 620,
     };
 
     return (
       <div className="verification">
-        <QrReader
-          delay={this.state.delay}
-          style={previewStyle}
-          onError={this.handleError}
-          onScan={this.handleScan}
-        />
-        <p>{this.state.result && this.state.result.text}</p>
+        <div className="scanner">
+          <h2>Scan Invitation Code</h2>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="invitecode"
+              value={this.state.inviteCode}
+              onChange={this.handleChange}
+              placeholder="Enter Invitation Code"
+            />
+            <button type="submit">Get Details</button>
+          </form>
+
+          <QrReader
+            delay={this.state.delay}
+            style={previewStyle}
+            onError={this.handleError}
+            onScan={this.handleScan}
+          />
+          <p className="result-text">
+            <strong>Invitation Code:</strong>
+            {this.state.result && this.state.result.text}
+          </p>
+        </div>
 
         {this.state.details && (
-          <div>
-            <h2>User Details:</h2>
-            <p>Name: {this.state.details.name}</p>
-            <p>Email: {this.state.details.email}</p>
-            <p>Phone: {this.state.details.phone}</p>
+          <div className="user-details">
+            <h2>User Info</h2>
+            <h3>Parent Details:</h3>
+
+            <div className="parent-details">
+              <p>Name: {this.state.details.name}</p>
+              <p>Email: {this.state.details.email}</p>
+              <p>Phone: +971{this.state.details.phone}</p>
+            </div>
             <h3>Children:</h3>
-            {this.state.details.children.map((child, index) => (
-              <div key={index}>
-                <p>Name: {child.name}</p>
-                <p>Age: {child.age}</p>
-                <p>Gender: {child.gender}</p>
-              </div>
-            ))}
+            <div className="children-list">
+              {this.state.details.children.map((child, index) => (
+                <div key={index} className="child-details">
+                  <p>Name: {child.name}</p>
+                  <p>Age: {child.age}</p>
+                  <p>Gender: {child.gender}</p>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
@@ -97,7 +156,34 @@ class QRCodeScanner extends Component {
 }
 
 export default QRCodeScanner;
+// {/* <div className="user-details">
+//         <h2>User Info</h2>
+//         <h3>Parent Details:</h3>
 
+//         <div className="parent-details">
+//           <p>Name: Riya Sailesh</p>
+//           <p>Email: riyasailesh@gmail.com</p>
+//           <p>Phone: +971503486374</p>
+//         </div>
+//         <h3>Children:</h3>
+//         <div className="children-list">
+//           <div className="child-details">
+//             <p>Name: K.B. Sailesh</p>
+//             <p>Age: 12</p>
+//             <p>Gender: Female</p>
+//           </div>
+//           <div className="child-details">
+//             <p>Name: K.B. Sailesh</p>
+//             <p>Age: 12</p>
+//             <p>Gender: Female</p>
+//           </div>
+//           <div className="child-details">
+//             <p>Name: K.B. Sailesh</p>
+//             <p>Age: 12</p>
+//             <p>Gender: Female</p>
+//           </div>
+//         </div>
+//       </div> */}
 // import React, { useState } from "react";
 // // import { QrReader } from "react-qr-reader";
 
